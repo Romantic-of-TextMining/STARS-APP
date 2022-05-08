@@ -3,14 +3,21 @@ from .. import db
 from ..models import User
 from ..email import send_email
 from . import main
-from .forms import NameForm
+from .forms import StarsForm, SearchForm
 from . import text_cloud
 import os
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+
+    field_form = StarsForm()
+    #if form.validate_on_submit():
+
+    #    return redirect(url_for('.index'))
+
     dirname = os.path.dirname(__file__)
     path = os.path.join(dirname, '../static/assets/data.json')
     new_text_cloud = text_cloud.AddTextCloud(path)
     new_text_cloud.create_textcloud()
-    return render_template('index.html')
+    search_form = SearchForm()
+    return render_template('index.html', field_form=field_form, search_form = search_form)

@@ -2,6 +2,7 @@ import json
 from PIL import Image
 from io import BytesIO
 import os
+from os.path import exists
 
 #for generate textcloud
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
@@ -11,7 +12,11 @@ from wordcloud import WordCloud
 
 class AddTextCloud:
     def __init__(self, path):      
-        self.input = {"path": path}     
+        self.input = {
+            "path": path
+            }   
+        dirname = os.path.dirname(__file__)
+        self.input["result_path"] = os.path.join(dirname, '../static/result/text_cloud.png')
  
     def generate_textcloud(self):
         words = self.input["words"]
@@ -51,10 +56,8 @@ class AddTextCloud:
         #self.msg["data"] = base64.b64encode(buf.getbuffer()).decode("ascii")
 
         #plt.savefig('static/result/text_cloud.png')
-        dirname = os.path.dirname(__file__)
-        result_path = os.path.join(dirname, '../static/result/text_cloud.png')
 
-        wc.to_file(result_path)
+        wc.to_file(self.input["result_path"])
 
         #self.msg["data"] = 0
 #        return self.msg
@@ -66,7 +69,11 @@ class AddTextCloud:
             self.input["words"] = json.load(openfile)
             #print("type:", type(self.input["words"]))
 
+    def check_result(self):
+        return os.path.exists(self.input["result_path"])
+
     def create_textcloud(self):
-        self.read_json()
-        self.generate_textcloud()
+        if not self.check_result():
+            self.read_json()
+            self.generate_textcloud()
         #return self.msg
