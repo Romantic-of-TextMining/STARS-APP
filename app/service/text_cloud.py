@@ -11,26 +11,50 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 class AddTextCloud:
-    def __init__(self):
-        self.input = {}      
+    def __init__(self, cluster):
+        self.input = {
+            "cluster": cluster,
+            "levels": cluster.keys()
+        }
         dirname = os.path.dirname(__file__)
-        self.input["result_path"] = os.path.join(dirname, '../static/result/text_cloud.png')
+        self.input["result_path"] = os.path.join(dirname, '../static/result')
+
+    def get_textcloud_path(self, level):
+        figure_path = os.path.join(self.input["result_path"], f'{level}.png')
+        return figure_path
+
+    def get_textclouds_path(self):
+        path = []
+        for level in self.input["levels"]:
+            path.append(self.get_textcloud_path(level))
+        return path
+
+    def get_textclouds_level(self):
+        return self.input["levels"]
+
+    def check_result(self):
+        #return os.path.exists(self.input["result_path"])
+        return False
 
     def create_textcloud(self):
-        if not self.check_result():
-            self.read_json()
-            self.generate_textcloud()
+        for level,token in self.input["cluster"].items():
+            if not self.check_result():
+                #self.read_json()
+                self.generate_textcloud(level, token)
         #return self.msg
+        return
 
     def read_json(self):
         # Opening JSON file
-        with open(self.input["path"], 'r') as openfile:  
+        #with open(self.input["path"], 'r') as openfile:  
             # Reading from json file
-            self.input["words"] = json.load(openfile)
-            #print("type:", type(self.input["words"]))    
+            #self.input["words"] = json.load(openfile)
+            #print("type:", type(self.input["words"]))
+        self.input["words"] = json.load(self.input["token"])   
+        print(f"words: {self.input.words}")
 
-    def generate_textcloud(self):
-        words = self.input["words"]
+    def generate_textcloud(self, level, token):
+        words = token
         seg_list = " ".join(words)
 
         x, y = np.ogrid[:1500, :1500]
@@ -67,11 +91,6 @@ class AddTextCloud:
         #self.msg["data"] = base64.b64encode(buf.getbuffer()).decode("ascii")
 
         #plt.savefig('static/result/text_cloud.png')
+        
+        wc.to_file(self.get_textcloud_path(level))
 
-        wc.to_file(self.input["result_path"])
-
-        #self.msg["data"] = 0
-#        return self.msg
-
-    def check_result(self):
-        return os.path.exists(self.input["result_path"])

@@ -1,4 +1,8 @@
+#3rd
 from flask import render_template, session, redirect, url_for, current_app
+import requests
+
+#local
 from .. import db
 from ..models import User
 from ..email import send_email
@@ -24,15 +28,10 @@ def index():
 
 @main.route("/textcloud/<string:field>", methods=["GET"])
 def text_cloud(field):
-
-    field_form = StarsForm()
-    #if form.validate_on_submit():
-
-    #    return redirect(url_for('.index'))
-    new_text_cloud = tc.AddTextCloud()
-    new_text_cloud.create_textcloud()
-    search_form = SearchForm()
-    return render_template('index.html', field_form=field_form, search_form = search_form)
-    #get field
+    response = requests.get(f"https://stars-api-romantic-tm.herokuapp.com/v1/textcloud/{field}")
     #call api
     #render textcloud based on response
+    new_text_cloud = tc.AddTextCloud(response.json())
+    new_text_cloud.create_textcloud()
+    return render_template('textcloud.html', text_cloud = new_text_cloud)
+
