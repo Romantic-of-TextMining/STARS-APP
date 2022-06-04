@@ -31,7 +31,16 @@ def text_cloud(field):
     response = requests.get(f"https://stars-api-romantic-tm.herokuapp.com/v1/textcloud/{field}")
     #call api
     #render textcloud based on response
-    new_text_cloud = tc.AddTextCloud(response.json())
-    new_text_cloud.create_textcloud()
+    #new_text_cloud = tc.AddTextCloud(response.json())
+    #new_text_cloud.create_textcloud()
+    class FakeTextCloud:
+        def get_textclouds_level(self):
+            levels = [
+                "Platinum", "Bronze"
+            ]
+            return levels
+    new_text_cloud = FakeTextCloud()
+
     return render_template('textcloud.html', text_cloud = new_text_cloud)
+    #return render_template('textcloud.html', text_cloud = new_text_cloud)
 

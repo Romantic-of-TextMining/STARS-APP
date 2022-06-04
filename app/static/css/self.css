@@ -1,0 +1,36 @@
+.category {
+    font-size: 2rem;
+    color : var(--bs-gray-500);
+}
+.field_section {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #E5E9EF;
+    margin-bottom: 5rem;
+}
+.field_title {
+    font-size: 4rem;
+    color: var(--bs-primary);
+}
+
+.figure-card {
+    padding: 4rem;
+    margin: 1rem 1rem 1.5rem 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.figure-card-title {
+    font-size: 3rem;
+    color : var(--bs-primary);
+    padding-top: 2rem;
+}
+
+.tokens_quantity_section{
+    font-size: 1.2rem;
+}
+.var_tokens_quantity {
+    font-weight:bolder;
+}
+
+ul.row {
+    list-style: none
+}
