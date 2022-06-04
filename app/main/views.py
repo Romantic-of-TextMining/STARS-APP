@@ -19,10 +19,10 @@ def index():
 
     #    return redirect(url_for('.index'))
 
-    dirname = os.path.dirname(__file__)
-    path = os.path.join(dirname, '../static/assets/data.json')
-    new_text_cloud = tc.AddTextCloud(path)
-    new_text_cloud.create_textcloud()
+    #dirname = os.path.dirname(__file__)
+    #path = os.path.join(dirname, '../static/assets/data.json')
+    #new_text_cloud = tc.AddTextCloud(path)
+    #new_text_cloud.create_textcloud()
     search_form = SearchForm()
     return render_template('index.html', field_form=field_form, search_form = search_form)
 
