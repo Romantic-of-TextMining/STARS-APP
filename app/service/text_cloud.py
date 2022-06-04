@@ -11,13 +11,24 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 class AddTextCloud:
-    def __init__(self, path):      
-        self.input = {
-            "path": path
-            }   
+    def __init__(self):
+        self.input = {}      
         dirname = os.path.dirname(__file__)
         self.input["result_path"] = os.path.join(dirname, '../static/result/text_cloud.png')
- 
+
+    def create_textcloud(self):
+        if not self.check_result():
+            self.read_json()
+            self.generate_textcloud()
+        #return self.msg
+
+    def read_json(self):
+        # Opening JSON file
+        with open(self.input["path"], 'r') as openfile:  
+            # Reading from json file
+            self.input["words"] = json.load(openfile)
+            #print("type:", type(self.input["words"]))    
+
     def generate_textcloud(self):
         words = self.input["words"]
         seg_list = " ".join(words)
@@ -62,18 +73,5 @@ class AddTextCloud:
         #self.msg["data"] = 0
 #        return self.msg
 
-    def read_json(self):
-        # Opening JSON file
-        with open(self.input["path"], 'r') as openfile:  
-            # Reading from json file
-            self.input["words"] = json.load(openfile)
-            #print("type:", type(self.input["words"]))
-
     def check_result(self):
         return os.path.exists(self.input["result_path"])
-
-    def create_textcloud(self):
-        if not self.check_result():
-            self.read_json()
-            self.generate_textcloud()
-        #return self.msg
