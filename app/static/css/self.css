@@ -1,3 +1,12 @@
+#banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(../assets/banner.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 50vh;
+}
+
 .category {
     font-size: 2rem;
     color : var(--bs-gray-500);
@@ -33,4 +42,9 @@
 
 ul.row {
     list-style: none
+}
+
+.index_function_content {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
