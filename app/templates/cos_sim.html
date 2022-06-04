@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Romantic of Text Mining{% endblock %}
+
+{% block page_content %}
+
+<div class="container" style="margin:2% auto">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-6">
+            <p style="padding: 3em">
+                <h1 class="text-info" style="font-size:56px;">Make Your Own Text Cloud</h1>
+                <form method="POST" action="/" style="font-size: 1.5rem;">
+                    {{ search_form.csrf_token }}
+                    {{ search_form.keyword.label }} {{ search_form.keyword(size=20) }}
+                    <input type="submit" value="Search">
+                </form>
+                <form method="POST" action="/" style="font-size: 1.5rem;">
+                    {{ field_form.csrf_token }}
+                    {{ field_form.field.label }} {{ field_form.field }}
+                    <input type="submit" value="Search">
+                </form>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-responsive" src="{{url_for('static', filename='result/result.png')}}" alt="Card image cap">
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

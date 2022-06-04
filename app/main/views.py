@@ -1,5 +1,5 @@
 #3rd
-from flask import render_template, session, redirect, url_for, current_app
+from flask import render_template, request, redirect, url_for
 import requests
 
 #local
@@ -11,23 +11,32 @@ from .forms import StarsForm, SearchForm
 import app.service.text_cloud as tc
 import os
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route("/", methods=["GET", "POST"])
 def index():
+    return render_template("index.html")
 
+@main.route("/text_cloud", methods=["GET", "POST"])
+def text_cloud():
+    form = StarsForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            field = form.field.data
+            return redirect(url_for("main.text_cloud_field", field=field))
+    return render_template("text_cloud.html", form=form)
+
+@main.route("/cos_sim", methods=["GET"])
+def cos_sim():
     field_form = StarsForm()
-    #if form.validate_on_submit():
-
-    #    return redirect(url_for('.index'))
-
-    #dirname = os.path.dirname(__file__)
-    #path = os.path.join(dirname, '../static/assets/data.json')
-    #new_text_cloud = tc.AddTextCloud(path)
-    #new_text_cloud.create_textcloud()
     search_form = SearchForm()
-    return render_template('index.html', field_form=field_form, search_form = search_form)
+    #if request.method == "POST":
+    #    if search_form.validate_on_submit():
+    #        return
 
-@main.route("/textcloud/<string:field>", methods=["GET"])
-def text_cloud(field):
+    return render_template("cos_sim.html", search_form=search_form, field_form = field_form)
+
+
+@main.route("/text_cloud/<string:field>", methods=["GET"])
+def text_cloud_field(field):
     response = requests.get(f"https://stars-api-romantic-tm.herokuapp.com/v1/textcloud/{field}")
     #call api
     #render textcloud based on response
@@ -41,6 +50,5 @@ def text_cloud(field):
             return levels
     new_text_cloud = FakeTextCloud()
 
-    return render_template('textcloud.html', text_cloud = new_text_cloud)
-    #return render_template('textcloud.html', text_cloud = new_text_cloud)
+    return render_template("text_cloud_field.html", text_cloud = new_text_cloud, field = field)
 
