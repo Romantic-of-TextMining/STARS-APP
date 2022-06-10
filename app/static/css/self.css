@@ -35,6 +35,11 @@
     width: 60%;
 }
 
+#canvas {
+    height: 20vw;
+    width: auto;
+}
+
 .banner-content {
     display: flex;
     width: calc(100% - 5rem);
