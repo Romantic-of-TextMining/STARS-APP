@@ -7,7 +7,8 @@ class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-class StarsForm(FlaskForm):
+class FieldForm(FlaskForm):
+    # need to chnge to api
     STARS_FIELD = [
         ("Public Engagement", "Public Engagement"),
         ("Campus as a Living Lab", "Campus as a Living Lab"),

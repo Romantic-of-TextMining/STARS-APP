@@ -1,16 +1,90 @@
-#banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(../assets/banner.jpeg);
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 50vh;
+:root {
+    --teal-100: #d2f4ea;
+    --teal-200: #a6e9d5;
+    --teal-300: #79dfc1;
+    --teal-400: #4dd4ac;
+    --teal-500: #20c997;
+    --teal-600: #1aa179;
+    --teal-700: #13795b;
+    --teal-800: #0d503c;
+    --teal-900: #06281e;
+}
+.banner {
+    display: flex;
+    flex-direction: row
+}
+
+#banner-container-left{
+    display: flex;
+    width: 40%;
+    height: 50vw;
+    position: relative;
+}
+
+#banner-container-left img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#banner-container-right{
+    align-items: center;
+    display: flex;
+    margin: auto;
+    position: relative;
+    width: 60%;
+}
+
+.banner-content {
+    display: flex;
+    width: calc(100% - 5rem);
+}
+
+.banner-slogan {
+    font-weight: bolder;
+    font-size: 5rem;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .category {
     font-size: 2rem;
     color : var(--bs-gray-500);
 }
+
+.rank-card-summary {
+    --font-size: 1rem;
+    --line-height: 1.5;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+}
+
+.rank-card-summary p.collapse.in {
+    display:contents;
+}
+
+.rank-card-summary p.collapse{
+    height: calc(var(--font-size)*var(--line-height)) !important;
+    overflow: hidden;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+}
+
+.rank-card-summary p.collapsing {
+    height: calc(var(--font-size)*var(--line-height)) !important;
+}
+
+.rank-card-summary a.collapsed:after  {
+    content: '+ Read More';
+}
+
+.rank-card-summary a:not(.collapsed):after {
+    content: '- Read Less';
+}
+
 .field_section {
     padding-bottom: 1rem;
     border-bottom: 1px solid #E5E9EF;
@@ -26,11 +100,69 @@
     margin: 1rem 1rem 1.5rem 1rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+.figure-card-container {
+    --width: 20vw;
+    width: var(--width);
+    --aspect-ratio: calc(4/3);
+    height: calc(var(--width) * var(--aspect-ratio))
+}
 
 .figure-card-title {
     font-size: 3rem;
     color : var(--bs-primary);
     padding-top: 2rem;
+}
+
+.navbar {
+    font-size: 1.5rem;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+    font-size: 1.5rem;
+    height: auto
+}
+
+.navbar-brand-bg {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 0.5rem
+}
+
+.navbar-nav {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.5rem
+}
+
+.rank-card-bg-institute {
+    font-style: italic;
+
+}
+
+.rank-card-point {
+    font-size: 8rem;
+    line-height: 1.1
+}
+
+.rank-card-total{
+    color: gainsboro;
+    font-size: 1.2rem;
+}
+
+.rank-card-level{
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.rank-card-institute{
+    font-size: 2rem;
+}
+
+.rank-card-version{
 }
 
 .tokens_quantity_section{

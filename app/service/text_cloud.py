@@ -10,6 +10,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
+#local
+from app.lib import benchmark
+
 class AddTextCloud:
     def __init__(self, cluster):
         self.input = {
@@ -35,7 +38,8 @@ class AddTextCloud:
     def check_result(self):
         #return os.path.exists(self.input["result_path"])
         return False
-
+    
+    @benchmark.timerfunc
     def create_textcloud(self):
         for level,token in self.input["cluster"].items():
             if not self.check_result():
@@ -57,12 +61,12 @@ class AddTextCloud:
         words = token
         seg_list = " ".join(words)
 
-        x, y = np.ogrid[:1500, :1500]
+        #x, y = np.ogrid[:1500, :1500]
 
-        mask = (x - 150) ** 2 + (y - 150) ** 2 > 130 ** 2
-        mask = 255 * mask.astype(int)
+        #mask = (x - 150) ** 2 + (y - 150) ** 2 > 130 ** 2
+        #mask = 255 * mask.astype(int)
 
-        back_image = ""
+        #back_image = ""
         #import imageio
         # back_image = imageio.imread('/ukraine.jpg') # Background image
 
