@@ -4,40 +4,43 @@
 {% block title %}Romantic of Text Mining{% endblock %}
 
 {% block page_content %}
-<div class="container" style="margin:2% auto">
-    <div class="row field_section">
-        <span class="category">Rank</span>
-        <h1 class="field_title">{{ field }}</h1>
-    </div>
-    <div class="row">
-        <div class="figure-card">
-            <div class="row">
-                <div class="col-6 col-sm-4 col-lg-2 justify-content-center" >
-                    <div class="rank-card-point-box">
-                        <scan class="rank-card-point text-right text-danger">4.0</scan>
-                        <scan class="rank-card-total text-right">/4.0</scan>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-8 col-lg-10">
-                    <div class="rank-card-report-state" ></div>
-                        <scan class="rank-card-level">Platinum</scan>
-                        <scan class="rank-card-version">ver. 2.2</scan>
-                    <div class="rank-card-institute">Natinoal Tsing Hua University</div>
-                    <div class="rank-card-bg-institute mb-4">
-                        <scan class="rank-card-country">Doctoral/Research, </scan>
-                        <scan class="rank-card-institute-type">United States</scan>
-                    </div>
-                    <div class="rank-card-summary">
-                        <p class="collapse" id="collapseSummary">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor maximus laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Suspendisse venenatis sollicitudin erat in gravida. Sed eget nisl tristique, commodo lectus sit amet, vulputate sem. Cras porttitor lorem ipsum, sit amet iaculis massa feugiat vitae. Curabitur sapien odio, ullamcorper tincidunt interdum vitae, vestibulum eu neque. Nam leo massa, fringilla eget mauris feugiat, auctor suscipit justo.
-                        </p>
-                        <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
-                    </div>
-                    </div>
-                </div>
-            </div>
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row field_section">
+            <a href="{{ url_for('main.rank') }}" class="text-decoration-none category">Ranking</a>
+            <h1 class="field_title">{{ field }}</h1>
         </div>
+        {% for item, sheet in rank_result.items() %}
+            <div class="item_name field_title">{{ item }}</div>
+            <div class="row">
+                {% for index, content in sheet.items() %}
+                <div class="figure-card">
+                    <div class="row">
+                        <div class="col-6 col-sm-4 col-lg-2 justify-content-center" >
+                            <div class="rank-card-point-box">
+                                <scan class="rank-card-point text-right text-danger">{{ content['Points Earned'] }}</scan>
+                                <scan class="rank-card-total text-right">/{{ content['Available Points'] }}</scan>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-8 col-lg-10">
+                            <div class="rank-card-report-state" ></div>
+                                <scan class="rank-card-level">{{ content['Rated Level'] }}</scan>
+                                <scan class="rank-card-version">ver. {{ content['STARS Version'] }}</scan>
+                            <div class="rank-card-institute">{{ content['Institution'] }}</div>
+                            <div class="rank-card-bg-institute mb-4">
+                                <scan class="rank-card-country">{{ content['Country'] }}, </scan>
+                                <scan class="rank-card-institute-type">{{ content['Institution Type'] }}</scan>
+                            </div>
+                            <div class="rank-card-summary">
+                                <p class="collapse" id="collapseSummary_{{ index }}">{{ content['Description'] }}</p>
+                                <a class="collapsed" data-toggle="collapse" href="#collapseSummary_{{ index }}" aria-expanded="false" aria-controls="collapseSummary_{{ index }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </div>
-
 {% endblock %}

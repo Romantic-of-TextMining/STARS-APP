@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, url_for
 import requests
 
 #local
+from config import config
 from .. import db
 from ..models import User
 from ..email import send_email
@@ -11,6 +12,9 @@ from . import main
 from .forms import FieldForm, SearchForm
 import app.service.text_cloud as tc
 import os
+from app.service import cos_sim as cs
+
+API_ROOT = config['development'].FLASK_API
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -27,20 +31,14 @@ def rank():
 
 @main.route("/rank/<string:field>", methods=["GET"])
 def rank_field(field):
-    #response = requests.get(f"https://stars-api-romantic-tm.herokuapp.com/v1/rank/{field}")
-    #call api
-    #render textcloud based on response
-    #new_text_cloud = tc.AddTextCloud(response.json())
-    #new_text_cloud.create_textcloud()
-    class FakeTextCloud:
-        def get_textclouds_level(self):
-            levels = [
-                "Platinum", "Bronze"
-            ]
-            return levels
-    new_text_cloud = FakeTextCloud()
+    api_path = API_ROOT+f"v1/rank"
+    params = {
+        "field": field,
+    }
+    response = requests.get(api_path, params = params)
+    rank_result = response.json()
 
-    return render_template("rank_field.html", field = field)
+    return render_template("rank_field.html", field = field, rank_result = rank_result)
 
 @main.route("/text_cloud", methods=["GET", "POST"])
 def text_cloud():
@@ -69,30 +67,28 @@ def text_cloud_field(field):
     return render_template("text_cloud_field.html", text_cloud = new_text_cloud, field = field)
 
 @main.route("/cos_sim", methods=["GET", "POST"])
-
 def cos_sim():
-    field_form = FieldForm()
     search_form = SearchForm()
     if request.method == "POST":
-        if (field_form.validate_on_submit() | search_form.validate_on_submit()):
-            field = [field_form.field.data, search_form.keyword.data]
-            return redirect(url_for("main.cos_sim_field", field=field))
+        if (search_form.validate_on_submit()):
+            field = search_form.field.data
+            query = search_form.query.data
+            return redirect(url_for("main.cos_sim_field", field=field, query = query))
 
-    return render_template("cos_sim.html", search_form=search_form, field_form = field_form)
+    return render_template("cos_sim.html", search_form=search_form)
 
-@main.route("/cos_sim/<string:field>", methods=["GET"])
-def cos_sim_field(field):
-    #response = requests.get(f"https://stars-api-romantic-tm.herokuapp.com/v1/rank/{field}")
-    #call api
-    #render textcloud based on response
-    #new_text_cloud = tc.AddTextCloud(response.json())
-    #new_text_cloud.create_textcloud()
-    class FakeTextCloud:
-        def get_textclouds_level(self):
-            levels = [
-                "Platinum", "Bronze"
-            ]
-            return levels
-    new_text_cloud = FakeTextCloud()
+@main.route("/cos_sim/<string:field>/<string:query>", methods=["GET"])
+#http://127.0.0.1:3030/cos_sim/en_14_participation_in_public_policy/condit
+def cos_sim_field(field, query):
+    params = {
+        "field": field,
+        "query": query
+    }
+    response = requests.get(f"http://127.0.0.1:5000/v1/cos_sim", params = params)
+    result = response.json()
 
-    return render_template("cos_sim_field.html", field = field)
+    field_result = params["field"].replace("_", " ")
+
+    score_object = cs.CosSimResult(result)
+    score = score_object.get_view_dict()
+    return render_template("cos_sim_field.html", score = score, field = field_result)

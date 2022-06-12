@@ -13,7 +13,7 @@ class Config:
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
     FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False\
 
     @staticmethod
     def init_app(app):
@@ -22,6 +22,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    FLASK_API = "http://127.0.0.1:5000/"
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
@@ -35,6 +36,8 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+
+    FLASK_API = "https://stars-api-romantic-tm.herokuapp.com/"
 
 
 config = {

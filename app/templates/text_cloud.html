@@ -4,144 +4,30 @@
 {% block title %}Romantic of Text Mining{% endblock %}
 
 {% block page_content %}
-<div class="container" style="margin:2% auto">
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-6">
-            <p style="padding: 3em">
-                <h1 class="text-primary" style="font-size:56px;">Learning from Outperformer </h1>
-                <form method="POST" action="{{ url_for('main.text_cloud') }}" style="font-size: 1.5rem;">
-                    {{ form.csrf_token }}
-                    {{ form.field.label }} {{ form.field }}
-                    {{ form.submit(class='btn btn-primary') }}
-                </form>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <img class="img-responsive" src="{{url_for('static', filename='result/result.png')}}" alt="Card image cap">
-        </div>
-        <div class="col-md-1">
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-6">
+                <p style="padding: 3em">
+                    <h1 class="text-primary" style="font-size:56px;">
+                        <a href="{{ url_for('main.text_cloud') }}" class="text-decoration-none">Text Cloud</a>
+                    </h1>
+                    <div class="index_function_content">Learn the key difference of the selected field in levels.</div>
+                    <form method="POST" action="{{ url_for('main.text_cloud') }}" style="font-size: 1.5rem;">
+                        {{ form.csrf_token }}
+                        {{ form.field.label }} {{ form.field }}
+                        {{ form.submit(class='btn btn-primary') }}
+                    </form>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive" src="{{url_for('static', filename='result/result.png')}}" alt="Card image cap">
+            </div>
+            <div class="col-md-1">
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
-
-
-<!--<form action="/" method="get">
-  <input type="text" list="stars_fields" name="stars_fields"> 
-  <datalist id="stars_fields">
-    <option value="Public Engagement">
-    <option value="Campus as a Living Lab">
-    <option value="Moscow">
-    <option value="Paris">
-  </datalist>
-  <input type="submit" value="confirm">
-</form>
--->
-
-
-<!--
-<div class="ecl-col-s-12 ecl-col-m-3">
-    <div class="ecl-u-border-bottom ecl-u-border-width-2">
-        <h2 class="ecl-u-type-heading-2 ecl-u-mb-s">Filter by</h2>
-    </div>
-<form class="oe-list-pages-facets-form ecl-form" data-drupal-selector="oe-list-pages-facets-form" action="/scholarships/erasmus-mundus-catalogue_en" method="post" id="oe-list-pages-facets-form" accept-charset="UTF-8">
-    <div data-drupal-facet-id="oe_project_title" class="facet-empty facet-hidden js-form-wrapper form-wrapper ecl-form-group" data-drupal-selector="edit-0" id="edit-0">
-        <div class="js-form-item form-item js-form-type-textfield form-item-oe-project-title js-form-item-oe-project-title ecl-form-group ecl-form-group--text-input ecl-u-mv-m">
-            <label for="edit-oe-project-title--2" class="ecl-form-label">Keywords</label>
-            <input data-drupal-selector="edit-oe-project-title" type="text" id="edit-oe-project-title--2" name="oe_project_title" value="" size="60" maxlength="128" class="form-text ecl-text-input">
-        </div>
-    </div>
-<div class="js-form-item form-item js-form-type-select form-item-oe-project-locations-country js-form-item-oe-project-locations-country ecl-form-group ecl-form-group--select ecl-u-mv-m">
-    <label for="edit-oe-project-locations-country--2" class="ecl-form-label">Country</label>
-    <div class="ecl-select__container ecl-select__container--m ecl-select__container--hidden">
-        <select data-drupal-selector="edit-oe-project-locations-country" multiple="" name="oe_project_locations_country[]" id="edit-oe-project-locations-country--2" class="form-select ecl-select" data-ecl-auto-init="Select" data-ecl-select-multiple="true" data-ecl-select-default="Select" data-ecl-select-search="Search" data-ecl-select-all="Select all" data-ecl-auto-initialized="true">
-            <option value="FR">France</option>
-            <option value="ES">Spain</option>
-            <option value="IT">Italy</option>
-            <option value="DE">Germany</option>
-            <option value="BE">Belgium</option>
-            <option value="PT">Portugal</option>
-            <option value="PL">Poland</option>
-            <option value="SE">Sweden</option>
-            <option value="NL">Netherlands</option>
-            <option value="GB">United Kingdom</option>
-            <option value="FI">Finland</option>
-            <option value="AT">Austria</option>
-        </select>
-        <div class="ecl-select__icon">
-            <svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/contrib/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>
-        </div>
-    </div>
-    <div class="ecl-select__multiple">
-        <div class="ecl-select__container ecl-select__container--m">
-            <input class="ecl-select ecl-select__multiple-toggle" type="text" placeholder="Select" readonly="true">
-            <div class="ecl-select__icon">
-                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="ecl-icon ecl-icon--s ecl-select__icon-shape ecl-icon--rotate-180">
-                    <defs><path id="id-7a" d="M40 38 24 20 8 38l-6-6L24 8l22 24z"></path>
-                    </defs><use xlink:href="#id-7a"></use>
-                </svg>
-            </div>
-        </div>
-        <div class="ecl-select__multiple-dropdown ecl-select__container ecl-select__container--m" style="display: none;">
-            <input class="ecl-text-input" type="search" placeholder="Search">
-            <div class="ecl-select__multiple-all ecl-checkbox" data-select-multiple-value="Select all">
-                <input class="ecl-checkbox__input" type="checkbox" id="select-multiple-all">
-                <label class="ecl-checkbox__label" for="select-multiple-all">
-                    <span class="ecl-checkbox__box">
-                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="ecl-icon ecl-icon--s ecl-checkbox__icon">
-                            <defs><path id="id-3a" d="M36 12 20 28l-8-8-4 4 12 12 20-20z"></path></defs>
-                            <use xlink:href="#id-3a"></use>
-                        </svg>
-                    </span>Select all
-                </label>
-            </div>
-            <div class="ecl-select__multiple-options">
-                <div class="ecl-checkbox" data-select-multiple-value="France" data-visible="true">
-                    <input class="ecl-checkbox__input" type="checkbox" id="select-multiple-FR">
-                    <label class="ecl-checkbox__label" for="select-multiple-FR">
-                        <span class="ecl-checkbox__box">
-                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="ecl-icon ecl-icon--s ecl-checkbox__icon">
-                                <defs><path id="id-3a" d="M36 12 20 28l-8-8-4 4 12 12 20-20z"></path></defs>
-                                <use xlink:href="#id-3a"></use>
-                            </svg>
-                        </span>France
-                    </label>
-                </div>
-                <div class="ecl-checkbox" data-select-multiple-value="Spain" data-visible="true">
-                    <input class="ecl-checkbox__input" type="checkbox" id="select-multiple-ES">
-                    <label class="ecl-checkbox__label" for="select-multiple-ES">
-                        <span class="ecl-checkbox__box">
-                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="ecl-icon ecl-icon--s ecl-checkbox__icon">
-                                <defs><path id="id-3a" d="M36 12 20 28l-8-8-4 4 12 12 20-20z"></path></defs>
-                                <use xlink:href="#id-3a"></use>
-                            </svg>
-                        </span>Netherlands
-                    </label>
-                </div>
-                <div class="ecl-checkbox" data-select-multiple-value="Ukraine" data-visible="true">
-                    <input class="ecl-checkbox__input" type="checkbox" id="select-multiple-UA">
-                    <label class="ecl-checkbox__label" for="select-multiple-UA">
-                        <span class="ecl-checkbox__box">
-                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="ecl-icon ecl-icon--s ecl-checkbox__icon">
-                                <defs><path id="id-3a" d="M36 12 20 28l-8-8-4 4 12 12 20-20z"></path></defs>
-                                <use xlink:href="#id-3a"></use>
-                            </svg>
-                        </span>Ukraine
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<input autocomplete="off" data-drupal-selector="form-npf8msszfcstprictivvhjgfcf-edfqiogcydpgo-ts" type="hidden" name="form_build_id" value="form-nPf8MsSZfCStpRIcTIvvHjGfcf-EdFQiogcYDpGO-Ts">
-<input data-drupal-selector="edit-oe-list-pages-facets-form" type="hidden" name="form_id" value="oe_list_pages_facets_form">
-<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper ecl-form-group" id="edit-actions">            
-<button class="ecl-button ecl-button--primary" type="submit" data-drupal-selector="edit-submit" id="edit-submit" name="op" value="Search">Search</button>            
-<button class="ecl-button ecl-button--secondary" type="submit" data-drupal-selector="edit-reset" id="edit-reset" name="op" value="Clear filters">Clear filters</button></div>
-</form>
-
-          </div>
-        -->

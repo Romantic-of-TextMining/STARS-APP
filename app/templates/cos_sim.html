@@ -4,30 +4,28 @@
 {% block title %}Romantic of Text Mining{% endblock %}
 
 {% block page_content %}
-
-<div class="container" style="margin:2% auto">
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-6">
-            <p style="padding: 3em">
-                <h1 class="text-primary" style="font-size:56px;">Cos Similarity</h1>
-                <div class="index_function_content">Search contents in the selected field by keywords</div>
-                <form method="POST" action="{{ url_for('main.cos_sim') }}" style="font-size: 1.5rem;">
-                    {{ search_form.csrf_token }}
-                    {{ search_form.keyword.label }} {{ search_form.keyword(size=20) }}
-                    <input type="submit" value="Search">
-                </form>
-                <form method="POST" action="{{ url_for('main.cos_sim') }}" style="font-size: 1.5rem;">
-                    {{ field_form.csrf_token }}
-                    {{ field_form.field.label }} {{ field_form.field }}
-                    <input type="submit" value="Search">
-                </form>
-            </p>
-        </div>
-        <div class="col-md-1">
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-6">
+                <p style="padding: 3em">
+                    <h1 class="text-primary" style="font-size:56px;">
+                        <a href="{{ url_for('main.cos_sim') }}" class="text-decoration-none">Cos Similarity</a>
+                    </h1>
+                    <div class="index_function_content">Search contents in the selected field by keywords</div>
+                    <form method="POST" action="{{ url_for('main.cos_sim') }}" style="font-size: 1.5rem;">
+                        {{ search_form.csrf_token }}
+                        <div>{{ search_form.field.label }} {{ search_form.field }}</div>
+                        <div>{{ search_form.query.label }} {{ search_form.query(size=20) }}</div>
+                        <div>{{ search_form.submit(class="btn btn-primary") }}</div>
+                    </form>
+                </p>
+            </div>
+            <div class="col-md-1">
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

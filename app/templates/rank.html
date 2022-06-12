@@ -4,29 +4,32 @@
 {% block title %}Romantic of Text Mining{% endblock %}
 
 {% block page_content %}
-<div class="container" style="margin:2% auto">
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-6 justify-content-center">
-            <p class="align-self-center p-3">
-                <h1 class="text-primary" style="font-size:56px;">Ranking</h1>
-                <div class="index_function_content">Get the best content from the selected field.</div>
-                <form method="POST" action="{{ url_for('main.rank') }}" style="font-size: 1.5rem;">
-                    {{ form.csrf_token }}
-                    {{ form.field.label }} {{ form.field }}
-                    {{ form.submit(class='btn btn-primary') }}
-                </form>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <img class="img-responsive" src="{{url_for('static', filename='result/result.png')}}" alt="Card image cap">
-        </div>
-        <div class="col-md-1">
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-6 justify-content-center">
+                <p class="align-self-center p-3">
+                    <h1 class="text-primary" style="font-size:56px;">
+                        <a href="{{ url_for('main.rank') }}" class="text-decoration-none">Ranking</a>
+                    </h1>
+                    <div class="index_function_content">Get the best content from the selected field.</div>
+                    <form method="POST" action="{{ url_for('main.rank') }}" style="font-size: 1.5rem;">
+                        {{ form.csrf_token }}
+                        {{ form.field.label }} {{ form.field }}
+                        {{ form.submit(class='btn btn-primary') }}
+                    </form>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive" src="{{url_for('static', filename='result/result.png')}}" alt="Card image cap">
+            </div>
+            <div class="col-md-1">
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 

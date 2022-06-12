@@ -118,6 +118,10 @@
     padding-top: 2rem;
 }
 
+.main-content {
+    margin-top: 5vh;
+}
+
 .navbar {
     font-size: 1.5rem;
 }
@@ -167,7 +171,19 @@
     font-size: 2rem;
 }
 
-.rank-card-version{
+.cos-score-card-item {
+    font-size: 2.5rem;
+}
+
+.cos-score-card-level {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.cos-score-card-point {
+    font-size: 4.5rem;
+    font-weight: bold;
+    line-height: 1.1
 }
 
 .tokens_quantity_section{

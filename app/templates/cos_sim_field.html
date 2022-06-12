@@ -4,33 +4,25 @@
 {% block title %}Romantic of Text Mining{% endblock %}
 
 {% block page_content %}
-<div class="container" style="margin:2% auto">
-    <div class="row field_section">
-        <span class="category">Text Cloud</span>
-        <h1 class="field_title">{{ field }}</h1>
-    </div>
-    <div class="row">
-        <div class="figure-card">
-            <div class="row">
-                <div class="">
-                    <div class="rank-card-report-state" ></div>
-                        <scan class="rank-card-level">Platinum</scan>
-                        <scan class="rank-card-version">ver. 2.2</scan>
-                    <div class="rank-card-institute">Natinoal Tsing Hua University</div>
-                    <div class="rank-card-bg-institute mb-4">
-                        <scan class="rank-card-country">Doctoral/Research, </scan>
-                        <scan class="rank-card-institute-type">United States</scan>
-                    </div>
-                    <div class="rank-card-summary">
-                        <p class="collapse" id="collapseSummary">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor maximus laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Suspendisse venenatis sollicitudin erat in gravida. Sed eget nisl tristique, commodo lectus sit amet, vulputate sem. Cras porttitor lorem ipsum, sit amet iaculis massa feugiat vitae. Curabitur sapien odio, ullamcorper tincidunt interdum vitae, vestibulum eu neque. Nam leo massa, fringilla eget mauris feugiat, auctor suscipit justo.
-                        </p>
-                        <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
-                    </div>
-                    </div>
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row field_section">
+            <span class="category">
+                <a href="{{ url_for('main.cos_sim') }}" class="text-decoration-none">Cos Similarity</a>
+            </span>
+            <h1 class="field_title">{{ field }}</h1>
+        </div>
+        <div class="row">
+            {% for name, item in score.items() %}
+            <div class="col-12 col-md-5 figure-card">
+                <div class="cos-score-card-point text-danger">{{ item['score'] }}</div>
+                <div class="rank-card-report-state" >
+                    <div class="cos-score-card-level">{{ item['level'] }}</div>
+                    <div class="cos-score-card-item">{{ item['item'] }}</div>
                 </div>
             </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
 {% endblock %}

@@ -10,13 +10,13 @@ class NameForm(FlaskForm):
 class FieldForm(FlaskForm):
     # need to chnge to api
     STARS_FIELD = [
-        ("Public Engagement", "Public Engagement"),
-        ("Campus as a Living Lab", "Campus as a Living Lab"),
+        ("ac_8_campus_as_a_living_laboratory", "ac_8_campus_as_a_living_laboratory"),
+        ("en_14_participation_in_public_policy", "en_14_participation_in_public_policy"),
         ("What", "What"),
         ("I don't care", "I don't care")
     ]
     field = SelectField('STARS Field', choices=STARS_FIELD)
     submit = SubmitField('Submit')  
 
-class SearchForm(FlaskForm):
-    keyword = StringField('Keyword')
+class SearchForm(FieldForm):
+    query = StringField('Keyword')
