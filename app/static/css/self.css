@@ -35,11 +35,6 @@
     width: 60%;
 }
 
-#canvas {
-    height: 20vw;
-    width: auto;
-}
-
 .banner-content {
     display: flex;
     width: calc(100% - 5rem);
@@ -56,6 +51,11 @@
 .category {
     font-size: 2rem;
     color : var(--bs-gray-500);
+}
+
+.item-name {
+    font-size: 4rem;
+    color: var(--bs-primary);
 }
 
 .rank-card-summary {
@@ -101,15 +101,19 @@
 }
 
 .figure-card {
-    padding: 4rem;
     margin: 1rem 1rem 1.5rem 1rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
 .figure-card-container {
     --width: 20vw;
     width: var(--width);
     --aspect-ratio: calc(4/3);
     height: calc(var(--width) * var(--aspect-ratio))
+}
+
+.figure-card-description {
+    padding: 4rem;
 }
 
 .figure-card-title {
@@ -184,6 +188,11 @@
     font-size: 4.5rem;
     font-weight: bold;
     line-height: 1.1
+}
+
+.tc_canvas{
+    height: 30vw;
+    width: auto;
 }
 
 .tokens_quantity_section{

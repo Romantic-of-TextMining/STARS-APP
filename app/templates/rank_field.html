@@ -11,7 +11,7 @@
             <h1 class="field_title">{{ field }}</h1>
         </div>
         {% for item, sheet in rank_result.items() %}
-            <div class="item_name field_title">{{ item }}</div>
+            <div class="item-name">{{ item.capitalize() }}</div>
             <div class="row">
                 {% for index, content in sheet.items() %}
                 <div class="figure-card">

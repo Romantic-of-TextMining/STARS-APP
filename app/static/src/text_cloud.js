@@ -7,11 +7,13 @@ function getContentWidth (elem) {
     - parseFloat(styles.paddingRight)
 }
 
-function generate_text_cloud(elem, tagList){
-    tagList = tagList;
+function generate_text_cloud(elem, tagList, minFreq){
+    console.log(minFreq)
     WordCloud(document.getElementById(elem), {
         list: tagList,
-        gridSize: Math.round(16 * getContentWidth(elem) / 1024),
+        weightFactor: (getContentWidth(elem)/214)*(6/minFreq),
+        //gridSize: Math.round(16 * getContentWidth(elem) / 1024),
+        //minSize: getContentWidth(elem)*0.0001,
         rotateRatio: 0.5,
         drawOutOfBound: false
       });

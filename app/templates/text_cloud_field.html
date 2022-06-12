@@ -13,28 +13,20 @@
             <h1 class="field_title">{{ field }}</h1>
         </div>
         <ul class="row">
-            {% for level in text_cloud.get_textclouds_level() %}
+            {% for level, content in result.items() %}
                 <div class="col-6 figure">
                     <div class="figure-card">
-                        <div id="canvas"></div>
-                        <script>
-                            const tagList = [
-                                ['CSS', 12], 
-                                ['Script', 6],
-                                ['Com', 8],
-                                ['AAA', 14],
-                                ['VFDGV', 10],
-                                ['Effogkifge', 120],
-                                ['pofre', 1],
-                                ['EIOJOjfew', 34],
-                                ['Wjfpepf', 50]
-                        ];
-                            generate_text_cloud("canvas", tagList)
+                        <div id="canvas_{{ loop.index }}" class="tc_canvas"></div>
+                        <script type="text/javascript">
+                            var tagList_{{ loop.index }} = {{ content["tagList"]|tojson }}
+                            generate_text_cloud("canvas_{{ loop.index }}", tagList_{{ loop.index }}, {{ content["minFreq"] }});
                         </script>
-                        <div class="figure-card-title">{{ level }}</div>
-                        <div class="tokens_quantity_section">
-                            <scan class="var_tokens_quantity">word </scan>
-                            <scan class="tokens_quantity">50</scan>
+                        <div class="figure-card-description">
+                            <div class="figure-card-title">{{ level.capitalize() }}</div>
+                            <div class="tokens_quantity_section">
+                                <scan class="var_tokens_quantity">word </scan>
+                                <scan class="tokens_quantity">50</scan>
+                            </div>
                         </div>
                     </div>
                 </div>
