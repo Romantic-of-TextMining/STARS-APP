@@ -1,32 +1,42 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}Flasky{% endblock %}
+{% block title %}Romantic of Text Mining{% endblock %}
 
 {% block head %}
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" >
+<link href="{{ url_for('static', filename='css/self.css') }}" rel="stylesheet" >
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">Flasky</a>
+<nav class="navbar fixed-top navbar-expand-lg text-primary flex-row-reverse">
+  <div class="navbar-brand-bg">
+    <a class="navbar-brand" href="{{ url_for('main.index') }}">STARS Explorer</a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('main.index') }}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Function
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ url_for('main.rank') }}">Rank</a>
+          <a class="dropdown-item" href="{{ url_for('main.text_cloud') }}">Text Cloud</a>
+          <a class="dropdown-item" href="{{ url_for('main.cos_sim') }}">Cos Similarity</a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+      </li>
+    </ul>
+  </div>
+</nav>
 {% endblock %}
 
 {% block content %}
@@ -37,9 +47,10 @@
         {{ message }}
     </div>
     {% endfor %}
-
-    {% block page_content %}{% endblock %}
 </div>
+
+  {% block page_content %}{% endblock %}
+
 {% endblock %}
 
 {% block scripts %}

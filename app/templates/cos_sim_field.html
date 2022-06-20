@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Romantic of Text Mining{% endblock %}
+
+{% block page_content %}
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row field_section">
+            <span class="category">
+                <a href="{{ url_for('main.cos_sim') }}" class="text-decoration-none">Cos Similarity</a>
+            </span>
+            <h1 class="field_title">{{ field }}</h1>
+        </div>
+        <div class="row">
+            {% for name, item in score.items() %}
+            <div class="col-12 col-md-5 cos-sim-figure-card">
+                <div class="cos-score-card-point text-danger">{{ item['score'] }}</div>
+                <div class="rank-card-report-state" >
+                    <div class="cos-score-card-level">{{ item['level'] }}</div>
+                    <div class="cos-score-card-item">{{ item['item'] }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

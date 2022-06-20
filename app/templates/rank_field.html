@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Romantic of Text Mining{% endblock %}
+
+{% block page_content %}
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row field_section">
+            <a href="{{ url_for('main.rank') }}" class="text-decoration-none category">Ranking</a>
+            <h1 class="field_title">{{ field }}</h1>
+        </div>
+        {% for item, sheet in rank_result.items() %}
+            <div class="item-name">{{ item.capitalize() }}</div>
+            <div class="row">
+                {% for index, content in sheet.items() %}
+                <div class="rank-figure-card">
+                    <div class="row">
+                        <div class="col-6 col-sm-4 col-lg-2 justify-content-center" >
+                            <div class="rank-card-point-box">
+                                <scan class="rank-card-point text-right text-danger">{{ content['Points Earned'] }}</scan>
+                                <scan class="rank-card-total text-right">/{{ content['Available Points'] }}</scan>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-8 col-lg-10">
+                            <div class="rank-card-report-state" ></div>
+                                <scan class="rank-card-level">{{ content['Rated Level'] }}</scan>
+                                <scan class="rank-card-version">ver. {{ content['STARS Version'] }}</scan>
+                            <div class="rank-card-institute">{{ content['Institution'] }}</div>
+                            <div class="rank-card-bg-institute mb-4">
+                                <scan class="rank-card-country">{{ content['Country'] }}, </scan>
+                                <scan class="rank-card-institute-type">{{ content['Institution Type'] }}</scan>
+                            </div>
+                            <div class="rank-card-summary">
+                                <p class="collapse" id="collapseSummary_{{ index }}">{{ content['Description'] }}</p>
+                                <a class="collapsed" data-toggle="collapse" href="#collapseSummary_{{ index }}" aria-expanded="false" aria-controls="collapseSummary_{{ index }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

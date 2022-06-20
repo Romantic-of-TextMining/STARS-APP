@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Romantic of Text Mining{% endblock %}
+{% block page_content %}
+<script src="../static/src/wordcloud2.js"></script>
+<script src="../static/src/text_cloud.js"></script>
+
+<div class="container main-content">
+    <div class="container" style="margin:2% auto">
+        <div class="row field_section">
+            <a href="{{ url_for('main.text_cloud') }}" class="category text-decoration-none">Text Cloud</a>
+            <h1 class="field_title">{{ field }}</h1>
+        </div>
+        <ul class="row">
+            {% for level, content in result.items() %}
+                <div class="col-6 figure">
+                    <div class="figure-card">
+                        <div id="canvas_{{ loop.index }}" class="tc_canvas"></div>
+                        <script type="text/javascript">
+                            var tagList_{{ loop.index }} = {{ content["tagList"]|tojson }}
+                            generate_text_cloud("canvas_{{ loop.index }}", tagList_{{ loop.index }}, {{ content["minFreq"] }});
+                        </script>
+                        <div class="figure-card-description">
+                            <div class="figure-card-title">{{ level.capitalize() }}</div>
+                            <div class="tokens_quantity_section">
+                                <scan class="var_tokens_quantity">word </scan>
+                                <scan class="tokens_quantity">50</scan>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </ul>
+    </div>
+</div>
+{% endblock %}
