@@ -20,6 +20,10 @@ API_ROOT = config[os.getenv('FLASK_CONFIG') or 'default'].FLASK_API
 def index():
     return render_template("index.html")
 
+@main.route("/function_index", methods=["GET", "POST"])
+def function_index():
+    return render_template("function_index.html")
+
 @main.route("/rank", methods=["GET", "POST"])
 def rank():
     form = FieldForm()

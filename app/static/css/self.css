@@ -28,6 +28,7 @@
 }
 
 #banner-container-right{
+    justify-content: center;
     align-items: center;
     display: flex;
     margin: auto;
@@ -35,9 +36,11 @@
     width: 60%;
 }
 
-.banner-content {
+.banner-content,
+.banner-button {
     display: flex;
     width: calc(100% - 5rem);
+    text-align: center;
 }
 
 .banner-slogan {
@@ -57,6 +60,15 @@
     padding: 4rem;
     margin: 1rem 1rem 1.5rem 1rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.func_index {
+    max-height: 20vh;
+    width: auto;
+}
+
+.index-btn {
+    font-size: 1.2rem;
 }
 
 .item-name {
@@ -181,7 +193,8 @@
     font-size: 2rem;
 }
 
-.rank-figure-card {
+.rank-figure-card,
+.func-figure-card {
     padding: 4rem;
     margin: 1rem 1rem 1.5rem 1rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
