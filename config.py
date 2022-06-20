@@ -25,9 +25,9 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-
     FLASK_API = "https://stars-api-romantic-tm.herokuapp.com/"
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
 
 
 config = {

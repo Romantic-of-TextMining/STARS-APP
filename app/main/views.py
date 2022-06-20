@@ -14,7 +14,7 @@ import app.service.text_cloud as tc
 import os
 from app.service import cos_sim as cs
 
-API_ROOT = config['development'].FLASK_API
+API_ROOT = config[os.getenv('FLASK_CONFIG')].FLASK_API
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -74,11 +74,12 @@ def cos_sim():
 @main.route("/cos_sim/<string:field>/<string:query>", methods=["GET"])
 #http://127.0.0.1:3030/cos_sim/en_14_participation_in_public_policy/condit
 def cos_sim_field(field, query):
+    api_path = API_ROOT+f"v1/rank"
     params = {
         "field": field,
         "query": query
     }
-    response = requests.get(f"http://127.0.0.1:5000/v1/cos_sim", params = params)
+    response = requests.get(api_path, params = params)
     result = response.json()
 
     field_result = params["field"].replace("_", " ")
