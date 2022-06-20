@@ -10,10 +10,11 @@ class NameForm(FlaskForm):
 class FieldForm(FlaskForm):
     # need to chnge to api
     STARS_FIELD = [
-        ("ac_8_campus_as_a_living_laboratory", "ac_8_campus_as_a_living_laboratory"),
-        ("en_14_participation_in_public_policy", "en_14_participation_in_public_policy"),
-        ("What", "What"),
-        ("I don't care", "I don't care")
+        ("AC_8_Campus_As_A_Living_Laboratory", "AC_8_Campus_As_A_Living_Laboratory"),
+        ("AC_9_Research_and_Scholarship", "AC_9_Research_and_Scholarship"),
+        ("EN_14_Participation_in_Public_Policy", "EN_14_Participation_in_Public_Policy"),
+        ("OP_10_Biodiversity", "OP_10_Biodiversity"),
+        ("PA_1_Sustainability_Coordination", "PA_1_Sustainability_Coordination")
     ]
     field = SelectField('STARS Field', choices=STARS_FIELD)
     submit = SubmitField('Submit')  
