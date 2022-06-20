@@ -5,12 +5,13 @@
 
 {% block page_content %}
 <div class="container main-content">
-    <div class="container" style="margin:2% auto">
-        <div class="row">
-            <div class="col-md-1">
+    <div class="container mt-4">
+        <div class="func-figure-card row align-items-center">
+            <div class="col-md-4 d-flex justify-content-center">
+                <img class="img-responsive func_index" src="{{url_for('static', filename='assets/search-svgrepo-com.svg')}}" alt="Card image cap">
             </div>
-            <div class="col-md-6">
-                <p style="padding: 3em">
+            <div class="col-md-8 ps-4">
+                <p class="align-self-center p-3">
                     <h1 class="text-primary" style="font-size:56px;">
                         <a href="{{ url_for('main.cos_sim') }}" class="text-decoration-none">Cos Similarity</a>
                     </h1>
@@ -22,8 +23,6 @@
                         <div>{{ search_form.submit(class="btn btn-primary") }}</div>
                     </form>
                 </p>
-            </div>
-            <div class="col-md-1">
             </div>
         </div>
     </div>
