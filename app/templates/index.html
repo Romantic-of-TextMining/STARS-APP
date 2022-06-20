@@ -2,15 +2,15 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="banner">
-    <div id="banner-container-left" class="align-items-center">
-        <img src="../static/assets/SDG.png" class= "mx-auto" style="height: 20vw; width: 20vw;">
+<div class="row mt-4">
+    <div id="banner-container-left" class="col-12 col-md-5 align-items-center">
+        <img src="../static/assets/SDG.png">
     </div>
-    <div class="row" id="banner-container-right">
-        <div class="col-12 banner-content">
+    <div class="col-12 col-md-7 row" id="banner-container-right">
+        <div class="banner-content col-12">
             <scan class="banner-slogan text-primary">Build Sustainability by Collective Wisdom from Top Universities.</scan>
         </div>
-        <div class="banner-button mt-4">
+        <div class="banner-button mt-4 col-12">
             <a href="{{ url_for('main.function_index') }}" class="btn btn-primary m-auto index-btn">Learn More</a>
         </div>
     </div>
